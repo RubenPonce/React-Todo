@@ -1,0 +1,11 @@
+html{
+    font-size: 2rem;
+}
+form{
+    display: flex;
+}
+.strike-through{
+    font-style: oblique;
+    text-decoration: line-through;
+    text-decoration-color: rgb(250, 229, 201);
+}
