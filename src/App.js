@@ -43,14 +43,13 @@ class App extends React.Component {
 
   markComplete= (e,item)=>{
     
-    e.target.classList.toggle('strike-through')
-    
+
     this.setState({
       tasksOnState: this.state.tasksOnState.map(task=> {
         if(item.id===task.id){
           return {
             ...task,
-            completed: !task.completed
+            completed: !task.completed,
           }
         }
         else{
@@ -58,6 +57,10 @@ class App extends React.Component {
         }
       })
   })
+ 
+
+
+
    
     
     
@@ -71,6 +74,7 @@ class App extends React.Component {
 
 
   handleChange = (e,key) =>{
+  
     this.setState({
       fillTask:{ 
         task: e.target.value,
