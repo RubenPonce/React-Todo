@@ -4,6 +4,12 @@ html{
 form{
     display: flex;
 }
+#root{
+    display: flex;
+    margin: 0 auto;
+    width: 800px;
+}
+
 .strike-through{
     font-style: oblique;
     text-decoration: line-through;

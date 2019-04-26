@@ -1,8 +1,6 @@
 import React from "react";
 
 const TodoForm = (props) => {
-  console.log(props.tasks)
-    
   return (
     <form onSubmit={props.addTask}>
       <input required placeholder="...todo" onChange={props.handleChange} name="task"/>
