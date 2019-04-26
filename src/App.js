@@ -45,46 +45,49 @@ class App extends React.Component {
     })
   };
 
-  addStrikeThrough= id=>{
-    console.log(id);
+  addStrikeThrough= e=>{
+    console.log(e.target);
+    e.target.classList.toggle('strike-through')
     // this.setState({
     //   completed: true
     // })
-    this.setState({
-      tasksOnState: this.state.tasksOnState.map(task=> {
-        if(id===task.id){
-          return {
-            ...task,
-            completed: !task.completed
-          }
-        }
-        else{
-         return task;
-        }
-      })
+    // this.setState({
+    //   tasksOnState: this.state.tasksOnState.map(task=> {
+    //     if(id===task.id){
+    //       return {
+    //         ...task,
+    //         completed: !task.completed
+    //       }
+    //     }
+    //     else{
+    //      return task;
+    //     }
+    //   })
     
-    })
+    // })
     
   }
-  removeTask = id =>{
-    console.log(id)
-   this.setState({
-    tasksOnState: this.state.tasksOnState.map((task,index)=> {
-      console.log(id[index].id)
-      console.log(task.id)
-      if(id[index].id===task.id && task.completed){
-        console.log(this.state.clearClicked)
-        return {
-          ...task,
-          clearClicked: !this.state.clearClicked
-        }
-      }
-      else{
-       return task;
-      }
-    })
+  removeTask = () =>{
+  //   console.log(id)
+  //  this.setState({
+  //   tasksOnState: this.state.tasksOnState.map((task,index)=> {
+  //     console.log(id[index].id)
+  //     console.log(task.id)
+  //     if(id[index].id===task.id && task.completed){
+  //       console.log(this.state.clearClicked)
+  //       return {
+  //         ...task,
+  //         clearClicked: !this.state.clearClicked
+  //       }
+  //     }
+  //     else{
+  //      return task;
+  //     }
+  //   })
   
-  })
+  // })
+    let completeItems= document.querySelectorAll('.strike-through');
+    completeItems.forEach(item=> item.style.display='none')
   }
 
 
