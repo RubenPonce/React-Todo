@@ -1,0 +1,45 @@
+html{
+    font-size: 2rem;
+}
+form{
+    display: flex;
+}
+#root{
+    display: flex;
+    margin: 0 auto;
+    width: 800px;
+
+}
+
+.strike{
+    font-style: oblique;
+    text-decoration: line-through;
+    text-decoration-color: rgb(250, 229, 201);
+
+}
+
+.list-items li{
+    margin: 1em;
+    list-style-type: none;
+    border-left: 1px solid black;
+    padding: .5em 1em;
+    
+}
+.list-items{
+    display: flex;
+    flex-direction: column;
+}
+form{
+    padding: 1em 0;
+    
+}
+form input{
+    padding: 1em;
+    border-radius: 5px;
+    
+}
+form button{
+    padding: 1em;
+    margin: 1em;
+    border-radius: 5px;
+}
