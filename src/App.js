@@ -26,76 +26,56 @@ class App extends React.Component {
     super();
     this.state = {
       tasksOnState: taskData,
-      task: '',
-      id: '',
-      completed: false, 
       fillTask:{
         task: '',
         id: Date.now(),
         completed: false,
       },
-      clearClicked: false,
     }
   }
 
   addTask = e => {
     e.preventDefault();
     this.setState({
-      tasksOnState: [...this.state.tasksOnState, this.state.fillTask],
+      tasksOnState: [...this.state.tasksOnState, this.state.fillTask,],
     })
   };
 
-  addStrikeThrough= e=>{
-    console.log(e.target);
+  markComplete= (e,item)=>{
+    
     e.target.classList.toggle('strike-through')
-    // this.setState({
-    //   completed: true
-    // })
-    // this.setState({
-    //   tasksOnState: this.state.tasksOnState.map(task=> {
-    //     if(id===task.id){
-    //       return {
-    //         ...task,
-    //         completed: !task.completed
-    //       }
-    //     }
-    //     else{
-    //      return task;
-    //     }
-    //   })
     
-    // })
+    this.setState({
+      tasksOnState: this.state.tasksOnState.map(task=> {
+        if(item.id===task.id){
+          return {
+            ...task,
+            completed: !task.completed
+          }
+        }
+        else{
+         return task;
+        }
+      })
+  })
+   
+    
     
   }
-  removeTask = () =>{
-  //   console.log(id)
-  //  this.setState({
-  //   tasksOnState: this.state.tasksOnState.map((task,index)=> {
-  //     console.log(id[index].id)
-  //     console.log(task.id)
-  //     if(id[index].id===task.id && task.completed){
-  //       console.log(this.state.clearClicked)
-  //       return {
-  //         ...task,
-  //         clearClicked: !this.state.clearClicked
-  //       }
-  //     }
-  //     else{
-  //      return task;
-  //     }
-  //   })
-  
-  // })
-    let completeItems= document.querySelectorAll('.strike-through');
-    completeItems.forEach(item=> item.style.display='none')
+  removeTask = (itemList) =>{
+   const incompleteList =  itemList.filter(item=> !item.completed)
+    this.setState({
+      tasksOnState: incompleteList,
+    })
   }
 
 
-  handleChange = e =>{
-    console.log(e.target.value);
+  handleChange = (e,key) =>{
     this.setState({
       fillTask:{ 
-        [e.target.name]: e.target.value
+        task: e.target.value,
+        id: key,
+        completed: false,
       }
     })
   }
@@ -107,8 +87,8 @@ class App extends React.Component {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <TodoList tasks={this.state.tasksOnState} addStrikeThrough={this.addStrikeThrough} clearClicked={this.state.clearClicked}/>
-        <TodoForm addTask={this.addTask} handleChange={this.handleChange} removeTask={this.removeTask} tasks={this.state.tasksOnState}/>
+        <TodoList tasks={this.state.tasksOnState} markComplete={this.markComplete} id={Date.now()}/>
+        <TodoForm tasks={this.state.tasksOnState} removeTask={this.removeTask} addTask={this.addTask} handleChange={this.handleChange}/>
       </div>
     );
   }
