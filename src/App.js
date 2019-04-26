@@ -6,16 +6,18 @@ const taskData = [
   {
     task: 'Organize Garage',
     id: 1528817077286,
-    completed: false
+    completed: false,
+
   },
   {
     task: 'Bake Cookies',
     id: 152881708435812,
-    completed: false
+    completed: false,
+
   },{
       task: 'Play League of Legends',
       id: 1528817084358231,
-      completed: false
+      completed: false,
     }
 ];
 
@@ -30,8 +32,9 @@ class App extends React.Component {
       fillTask:{
         task: '',
         id: Date.now(),
-        completed: false
+        completed: false,
       },
+      clearClicked: false,
     }
   }
 
@@ -63,10 +66,25 @@ class App extends React.Component {
     })
     
   }
-  removeTask = props =>{
-    console.log(props.tasks)
-   console.log('removed');
-    
+  removeTask = id =>{
+    console.log(id)
+   this.setState({
+    tasksOnState: this.state.tasksOnState.map((task,index)=> {
+      console.log(id[index].id)
+      console.log(task.id)
+      if(id[index].id===task.id && task.completed){
+        console.log(this.state.clearClicked)
+        return {
+          ...task,
+          clearClicked: !this.state.clearClicked
+        }
+      }
+      else{
+       return task;
+      }
+    })
+  
+  })
   }
 
 
@@ -86,7 +104,7 @@ class App extends React.Component {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <TodoList tasks={this.state.tasksOnState} addStrikeThrough={this.addStrikeThrough} />
+        <TodoList tasks={this.state.tasksOnState} addStrikeThrough={this.addStrikeThrough} clearClicked={this.state.clearClicked}/>
         <TodoForm addTask={this.addTask} handleChange={this.handleChange} removeTask={this.removeTask} tasks={this.state.tasksOnState}/>
       </div>
     );

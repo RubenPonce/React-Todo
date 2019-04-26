@@ -12,7 +12,7 @@ const TodoList = (props) => {
   return (
     <div className="list-items">
     {props.tasks.map(task =>{
-        return (<Todo task={task.task} key={task.id} id={task.id} completed={task.completed} addStrikeThrough={props.addStrikeThrough}/>)
+        return (<Todo task={task.task} key={task.id} id={task.id} completed={task.completed} clearClicked={props.clearClicked} addStrikeThrough={props.addStrikeThrough}/>)
     })}
       
     </div>
